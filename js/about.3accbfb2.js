@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkmy_site"]=self["webpackChunkmy_site"]||[]).push([[594],{5609:function(n,t,u){u.r(t),u.d(t,{default:function(){return o}});var e=u(6768);const s={class:"about"};function a(n,t){return(0,e.uX)(),(0,e.CE)("div",s,t[0]||(t[0]=[(0,e.Lk)("h1",null,"This is an about page",-1)]))}var r=u(1241);const c={},i=(0,r.A)(c,[["render",a]]);var o=i}}]);
+//# sourceMappingURL=about.3accbfb2.js.map
