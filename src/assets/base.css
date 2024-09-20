@@ -1,0 +1,43 @@
+/* color palette from <https://catppuccin.com/palette> */
+
+:root {
+	--bg-color: #EFF1F5;
+	--fg-color: #11111B;
+	--sbg-color: #CCD0DA;
+	--rosewater-color: #f4dbd6;
+	--flamingo-color: #f0c6c6;
+	--pink-color: #f5bde6;
+	--mauve-color: #c6a0f6;
+	--red-color: #ed8796;
+	--maroon-color: #ee99a0;
+	--peach-color: #f5a97f;
+	--yellow-color: #eed49f;
+	--green-color: #a6da95;
+	--teal-color: #8bd5ca;
+	--sky-color: #91d7e3;
+	--sapphire-color: #7dc4e4;
+	--blue-color: #8aadf4;
+	--lavender-color: #b7bdf8;
+}
+
+@font-face {
+    font-family: 'PressStart2P';
+    src: url('@/assets/fonts/PressStart2P-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aldrich';
+    src: url('@/assets/fonts/aldrichrusbydaymarius.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
+    font-family: 'Aldrich', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'PressStart2P', sans-serif;
+}
