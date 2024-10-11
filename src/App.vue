@@ -11,12 +11,14 @@ const isSettingsMenuOpen = ref(false);
 const { t, locale } = useI18n();
 
 const changeLanguage = () => {
+	let new_lang = "en"
+
 	if (locale.value === 'en') {
-  		locale.value = 'ru';
-	} else {
-		locale.value = 'en';
-	}
-	console.log('Language changed to', locale.value);
+		new_lang = 'ru';		
+	} 
+
+	locale.value = new_lang;
+	localStorage.setItem('lang', new_lang);
 };
 
 const toggleTheme = () => {
@@ -32,6 +34,11 @@ onMounted(() => {
   const savedTheme = localStorage.getItem('isDarkTheme');
   if (savedTheme !== null) {
     isDarkTheme.value = JSON.parse(savedTheme);
+  }
+
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang !== null && ['ru','en'].includes(savedLang)) {
+    locale.value = savedLang;
   }
 });
 </script>
