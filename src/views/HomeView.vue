@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 import RocketIcon from "@/components/icons/RocketIcon.vue";
 import StarsIcon from "@/components/icons/StarsIcon.vue";
 import AboutMeIcon from "@/components/icons/AboutMeIcon.vue";
@@ -13,40 +15,39 @@ import ResumeIcon from "@/components/icons/ResumeIcon.vue";
 import DiamondLine from "@/components/DiamondLine.vue";
 import NavBtn from "@/components/NavBtn.vue";
 import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
+
+const { t, locale } = useI18n();
 </script>
 
 <template>
   <div class="home-page">
     <div class="left-side">
 		<div class="title">
-			<RocketIcon class="icon" />
-			<h1 class="text">Make your<br />business better</h1>
+			<RocketIcon class="icon"/>
+			<h1 class="text" v-html="$t('home.title')"></h1>
 		</div>
-		<p class="description">
-		Hi! I'm a full-stack programmer with extensive experience and deep
-		knowledge in all aspects of development.
-		</p>
+		<p class="description" v-html="$t('home.description')"></p>
 		<div class="highlight bm20">
 			<StarsIcon />
-			<p class="text">Write quickly, I will be happy to solve your problem</p>
+			<p class="text" v-html="$t('home.highlighted_text')"></p>
 		</div>
 		<DiamondLine class="bm30"/>
 		<NavBtn  
-			title="About me" 
+			:title="t('home.nav.about_me.title')" 
 			:IconComponent="AboutMeIcon" 
-			description="Meet your future developer!" 
+			:description="t('home.nav.about_me.description')" 
 			url="/about"
 			class="bm20"/>
 		<NavBtn  
-			title="Portfolio" 
+		:title="t('home.nav.portfolio.title')" 
 			:IconComponent="PortfolioIcon" 
-			description="Works that speak for themselves." 
+			:description="t('home.nav.portfolio.description')" 
 			url="/portfolio"
 			class="bm20"/>		
 		<NavBtn  
-			title="Articles" 
+			:title="t('home.nav.articles.title')" 
 			:IconComponent="ArticlesIcon" 
-			description="Your knowledge and inspiration!" 
+			:description="t('home.nav.articles.description')" 
 			url="/articles"
 			class="bm30"/>
 		<DiamondLine class="bm30"/>
@@ -66,7 +67,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 			<SocialMediaBtn
 				:IconComponent="GithubIcon"
 				url="https://github.com/DIMFLIX-OFFICIAL"
-				color="var(--fg-color)"/>
+				color="var(--button-color)"/>
 		</div>
     </div>
 
@@ -83,7 +84,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 		</svg>
 		<a href="https://nn.hh.ru/resume/08915fc3ff0cef7b610039ed1f6c6a514a6956" target="_blank" class="resume-btn">
 			<ResumeIcon/>
-			<p class="text">Resume</p>
+			<p class="text">{{ t('home.resume_btn') }}</p>
 		</a>
 	</div>
   </div>
@@ -97,7 +98,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 	justify-content: center;
 	align-items: center;
 	background-color: var(--bg-color);
-	color: var(--fg-color);
+	color: var(--text-color);
 	gap: 150px;
 }
 
@@ -119,6 +120,8 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 		.icon {
 			width: 74;
 			height: 71;
+			stroke: var(--text-color);
+			fill: var(--text-color);
 		}
 
 		.text {
@@ -159,6 +162,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 		.text {
 			font-family: "PressStart2P";
 			font-size: 12px;
+			color: var(--button-color);
 		}
 	}
 
@@ -189,7 +193,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 		justify-content: center;
 		width: 100%;
 		border-radius: 10px;
-		background-color: var(--fg-color);
+		background-color: var(--button-color);
 		height: 90px;
 		gap: 15px;
 		cursor: pointer;
@@ -205,7 +209,7 @@ import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
 		.text {
 			font-family: "PressStart2P";
 			font-size: 24px;
-			color: var(--bg-color);
+			color: var(--button-text-color);
 		}
 	}
 }

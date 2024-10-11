@@ -31,7 +31,7 @@ const props = defineProps({
 			</div>
 		</div>
 		<div class="right-side">
-			<UrlIcon/>
+			<UrlIcon class="icon"/>
 		</div>
 	</router-link>
 
@@ -42,7 +42,7 @@ const props = defineProps({
 	width: 100%;
 	height: 80px;
 	border-radius: 10px;
-	background-color: var(--sbg-color);
+	background-color: var(--sbg1-color);
 	display: flex;
 	align-items: center;
 	padding: 0 20px;
@@ -57,13 +57,14 @@ const props = defineProps({
 		.icon {
 			width: 40px;
 			height: 40px;
+			stroke: var(--text-color);
 		}
 
 		.text-block {
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
-			color: var(--fg-color);
+			color: var(--text-color);
 
 			.title {
 				font-family: "PressStart2P";
@@ -75,6 +76,12 @@ const props = defineProps({
 				text-align: center;
 				margin: 0;
 			}
+		}
+	}
+
+	.right-side {
+		.icon {
+			stroke: var(--text-color);
 		}
 	}
 }

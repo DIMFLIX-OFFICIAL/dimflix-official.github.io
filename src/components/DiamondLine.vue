@@ -15,13 +15,13 @@
 .line {
   width: 100%;
   height: 2px;
-  background-color: var(--fg-color);
+  background-color: var(--text-color);
 }
 
 .diamond {
   width: 15px;
   height: 15px;
-  background-color: var(--fg-color);
+  background-color: var(--text-color);
 }
 
 .left {
