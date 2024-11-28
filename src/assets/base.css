@@ -1,4 +1,5 @@
 /* color palette from <https://catppuccin.com/palette> */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
 
 :root {
 	--bg-color: #EFF1F5;
@@ -71,4 +72,29 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'PressStart2P', sans-serif;
+}
+
+span {
+	display: inline-flex;
+	border-radius: 10px;
+	align-items: center;
+	padding: 3px 10px 3px 10px;
+	gap: 5px;
+	background-image: linear-gradient(to right,
+			var(--rosewater-color),
+			var(--flamingo-color),
+			var(--pink-color),
+			var(--mauve-color),
+			var(--red-color),
+			var(--maroon-color),
+			var(--peach-color),
+			var(--yellow-color),
+			var(--green-color),
+			var(--teal-color),
+			var(--sky-color),
+			var(--sapphire-color),
+			var(--blue-color),
+			var(--lavender-color)
+	);
+	color: var(--button-color)
 }
