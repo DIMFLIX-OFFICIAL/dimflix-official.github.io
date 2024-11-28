@@ -84,7 +84,7 @@ const { t, locale } = useI18n();
 		</svg>
 		<a href="https://nn.hh.ru/resume/08915fc3ff0cef7b610039ed1f6c6a514a6956" target="_blank" class="resume-btn">
 			<ResumeIcon/>
-			<p class="text">{{ t('home.resume_btn') }}</p>
+			<p class="text">{{ t('home.resume_btn')}}</p>
 		</a>
 	</div>
   </div>
@@ -100,6 +100,13 @@ const { t, locale } = useI18n();
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	gap: 150px;
+
+	@media (max-width: 1315px) {
+		flex-direction: column;
+		gap: 50px;
+		height: auto; // Allow height to adjust based on content
+		padding: 20px; // Add padding for better spacing on mobile
+	}
 }
 
 .bm20 {

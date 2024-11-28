@@ -1,5 +1,8 @@
 export const messages = {
     en: {
+      notDone: {
+        title: "This page is under<br/>development"
+      },
       home: {
         title: "Make your<br/>business better",
         description: "Hi! I'm a full-stack programmer with extensive experience and deep knowledge in all aspects of development.",
@@ -23,6 +26,9 @@ export const messages = {
       
     },
     ru: {
+      notDone: {
+        title: "Эта страница находится на<br/>стадии разработки"
+      },
       home: {
         title: "Сделай cвой<br/>бизнес лучше",
         description: "Привет! Я программист полного цикла с большим опытом и глубокими знаниями во всех аспектах разработки.",
