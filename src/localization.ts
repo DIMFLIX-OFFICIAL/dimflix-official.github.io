@@ -34,6 +34,9 @@ export const messages = {
             projects: "Completed<br>Projects",
             hackathons: "Winning<br>Hackathons"
           }
+        },
+        techStack: {
+          title: "My Tech Stack"
         }
       }
     },
@@ -72,6 +75,9 @@ export const messages = {
             projects: "Выполнено<br>проектов",
             hackathons: "Выиграно<br>Хакатонов"
           }
+        },
+        techStack: {
+          title: "Мой тех. стек"
         }
       }
     }

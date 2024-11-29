@@ -1,36 +1,46 @@
-<script setup lang="ts">
+<script setup>
 import { useI18n } from 'vue-i18n';
-
-import RocketIcon from "@/components/icons/RocketIcon.vue";
-import StarsIcon from "@/components/icons/StarsIcon.vue";
-import AboutMeIcon from "@/components/icons/AboutMeIcon.vue";
-import PortfolioIcon from "@/components/icons/PortfolioIcon.vue";
-import ArticlesIcon from "@/components/icons/ArticlesIcon.vue";
-import YoutubeIcon from "@/components/icons/YoutubeIcon.vue";
-import VkIcon from "@/components/icons/VkIcon.vue";
-import TelegramIcon from "@/components/icons/TelegramIcon.vue";
-import GithubIcon from "@/components/icons/GithubIcon.vue";
-import ResumeIcon from "@/components/icons/ResumeIcon.vue";
-
 import DiamondLine from "@/components/DiamondLine.vue";
-import NavBtn from "@/components/NavBtn.vue";
-import SocialMediaBtn from "@/components/SocialMediaBtn.vue";
+
+import { VueMarqueeSlider } from 'vue3-marquee-slider';
+import '../../node_modules/vue3-marquee-slider/dist/style.css'
+
+import Capacitor from '@/components/icons/tech-stack/Capacitor.vue';
+import Css from '@/components/icons/tech-stack/Css.vue';
+import Django from '@/components/icons/tech-stack/Django.vue';
+import Docker from '@/components/icons/tech-stack/Docker.vue';
+import FastAPI from '@/components/icons/tech-stack/FastAPI.vue';
+import Html from '@/components/icons/tech-stack/Html.vue';
+import Ionic from '@/components/icons/tech-stack/Ionic.vue';
+import Java from '@/components/icons/tech-stack/Java.vue';
+import Js from '@/components/icons/tech-stack/Js.vue';
+import MongoDB from '@/components/icons/tech-stack/MongoDB.vue';
+import MySQL from '@/components/icons/tech-stack/MySQL.vue';
+import Nginx from '@/components/icons/tech-stack/Nginx.vue';
+import Postgresql from '@/components/icons/tech-stack/Postgresql.vue';
+import Python from '@/components/icons/tech-stack/Python.vue';
+import Qt from '@/components/icons/tech-stack/Qt.vue';
+import Rust from '@/components/icons/tech-stack/Rust.vue';
+import Ts from '@/components/icons/tech-stack/Ts.vue';
+import Vue from '@/components/icons/tech-stack/Vue.vue';
+import Aiogram from '@/components/icons/tech-stack/Aiogram.vue';
+import Pyrogram from '@/components/icons/tech-stack/Pyrogram.vue';
+import Tauri from '@/components/icons/tech-stack/Tauri.vue';
+import Selenium from '@/components/icons/tech-stack/Selenium.vue';
+import Aiohttp from '@/components/icons/tech-stack/Aiohttp.vue';
+import Ngrok from '@/components/icons/tech-stack/Ngrok.vue';
+import Flask from '@/components/icons/tech-stack/Flask.vue';
 
 const { t, locale } = useI18n();
-
-const formattedDescription = () => {
-  const description = t('about.aboutme.description');
-  return description.replace(/<span class="highlight">/g, '<span class="highlight">').replace(/<\/span>/g, '</span>');
-};
 </script>
 
 <template>
-	<div class="about-page">
+	<div class="page">
 		<div class="aboutme-container">
-			<div class="container-title">
+			<div class="containers-title">
 				<p v-html="t('about.aboutme.title')"></p>
 			</div>
-			
+
 			<div class="img-and-text bm20">
 				<img class="photo" src="@/assets/my-photo.jpg">
 				<div class="text">
@@ -41,7 +51,7 @@ const formattedDescription = () => {
 			</div>
 
 			<DiamondLine />
-			
+
 			<div class="stats">
 				<div class="stat">
 					<p class="count">03</p>
@@ -57,23 +67,89 @@ const formattedDescription = () => {
 				</div>
 			</div>
 		</div>
+		<div class="techstack-container">
+			<div class="containers-title">
+				<p v-html="t('about.techStack.title')"></p>
+			</div>
+      
+			<vue-marquee-slider id="carousel1" :speed="15000" :width="80" :space="30">
+				<Python/>
+				<Java/>
+				<Rust/>
+				<Html/>
+				<Css/>
+				<Js/>
+				<Ts/>
+				<Vue/>
+				<Postgresql/>
+				<Qt/>
+				<Tauri/>
+				<Aiogram/>
+				<Pyrogram/>
+
+			</vue-marquee-slider>
+
+			<vue-marquee-slider id="carousel2" :speed="15000" :width="80" :space="30" reverse>
+				<FastAPI/>
+				<Django/>
+				<Flask/>
+				<Aiohttp/>
+				<Selenium/>
+				<Ionic/>
+				<Capacitor/>
+				<MongoDB/>
+				<MySQL/>
+				<Docker/>
+				<Nginx/>
+				<Ngrok/>
+			</vue-marquee-slider>
+		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
-.about-page {
+.page {
 	width: 100%;
 	height: 100vh;
 	max-width: 100%;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
 	background-color: var(--bg-color);
 	color: var(--text-color);
-	gap: 150px;
+	gap: 100px;
 	padding: 100px 20%;
 	box-sizing: border-box;
 	overflow: scroll;
+}
+
+.containers-title {
+	position: absolute;
+	top: -35px;
+	left: 35px;
+	text-align: center;
+	padding: 10px 30px;
+	border-radius: 15px;
+	background-color: var(--sbg2-color);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	p {
+		font-family: "Rubik Doodle Shadow", sans-serif;
+		font-size: 2em;
+		margin: 0;
+		padding: 0;
+		color: var(--text-color);
+	}
+}
+
+.bm20 {
+	margin-bottom: 20px;
+}
+
+.bm30 {
+	margin-bottom: 30px;
 }
 
 .aboutme-container {
@@ -85,7 +161,7 @@ const formattedDescription = () => {
 	background-color: var(--sbg1-color);
 	border-radius: 15px;
 	position: relative;
-	padding: 50px 20px 20px 20px;
+	padding: 30px 20px 20px 20px;
 
 	.img-and-text {
 		max-width: 100%;
@@ -94,14 +170,14 @@ const formattedDescription = () => {
 		gap: 30px;
 		box-sizing: border-box;
 		align-items: center;
-		
+
 		.photo {
-			max-height: 500px; /* Максимальная высота изображения */
-			height: auto; /* Сохраняем пропорции */
+			max-height: 500px;
+			height: auto;
 			border-radius: 15px;
 			object-fit: cover;
 		}
-		
+
 		h4 {
 			margin-bottom: 0;
 		}
@@ -143,65 +219,16 @@ const formattedDescription = () => {
 	}
 }
 
-.container-title {
-	position: absolute;
-	top: -35px;
-	left: 35px;
-	text-align: center;
-    padding: 10px 10px;
-	border-radius: 15px;
-	background-color: var(--sbg2-color);
-	height: 50px;
-	width: 25%;
-	max-width: 200px;
+.techstack-container {
+	width: 100%;
+	max-width: 1050px;
+	box-sizing: border-box;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	p {
-		font-family: "Rubik Doodle Shadow", sans-serif;
-		font-size: 2em;
-		margin: 0;
-		padding: 0;
-		color: var(--text-color);
-	}
-}
-
-.bm20 {
-	margin-bottom: 20px;
-}
-
-.bm30 {
-	margin-bottom: 30px;
-}
-
-.highlight {
-	display: inline-flex;
-	border-radius: 10px;
-	align-items: center;
-	padding: 3px 10px 3px 10px;
-	gap: 5px;
-
-	background-image: linear-gradient(to right,
-			var(--rosewater-color),
-			var(--flamingo-color),
-			var(--pink-color),
-			var(--mauve-color),
-			var(--red-color),
-			var(--maroon-color),
-			var(--peach-color),
-			var(--yellow-color),
-			var(--green-color),
-			var(--teal-color),
-			var(--sky-color),
-			var(--sapphire-color),
-			var(--blue-color),
-			var(--lavender-color));
-
-	.text {
-		font-family: "PressStart2P";
-		font-size: 12px;
-		color: var(--button-color);
-	}
+	flex-direction: column;
+	background-color: var(--sbg1-color);
+	border-radius: 15px;
+	position: relative;
+	padding: 50px 20px 20px 20px;
+	gap: 30px;
 }
 </style>
