@@ -1,9 +1,14 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import DiamondLine from "@/components/DiamondLine.vue";
+import { ref } from 'vue';
 
 import { VueMarqueeSlider } from 'vue3-marquee-slider';
-import '../../node_modules/vue3-marquee-slider/dist/style.css'
+import Image from 'primevue/image';
+import '@/../node_modules/vue3-marquee-slider/dist/style.css'
+
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
 
 import Capacitor from '@/components/icons/tech-stack/Capacitor.vue';
 import Css from '@/components/icons/tech-stack/Css.vue';
@@ -30,8 +35,63 @@ import Selenium from '@/components/icons/tech-stack/Selenium.vue';
 import Aiohttp from '@/components/icons/tech-stack/Aiohttp.vue';
 import Ngrok from '@/components/icons/tech-stack/Ngrok.vue';
 import Flask from '@/components/icons/tech-stack/Flask.vue';
+import { ImageCompareClasses } from 'primevue';
 
+const isLightboxOpen = ref(true);
 const { t, locale } = useI18n();
+const config = {
+  itemsToShow: 3.95,
+  wrapAround: true,
+  transition: 500,
+  gap: 100,
+};
+
+const awardsList = ref([
+	{src: require("@/assets/awards/it-planet-ai-спорттех-финал.png"), alt: ""},
+	{src: require("@/assets/awards/Международный-ВШЭ-Дроны.jpg"), alt: ""},
+	{src: require("@/assets/awards/Международный-ВШЭ.png"), alt: ""},
+	{src: require("@/assets/awards/Диплом-Минина.png"), alt: ""},
+	{src: require("@/assets/awards/IT-Чкалов.png"), alt: ""}
+])
+
+const certificatesList = ref([
+	{src: require("@/assets/significant-certificates/it-planet ai-спорттех.png"), title: ""},
+	{src: require("@/assets/significant-certificates/it-planet postgresql.png"), title: ""},
+	{src: require("@/assets/significant-certificates/SberGarage.png"), title: ""},
+	{src: require("@/assets/significant-certificates/Атомик-Хак.png"), title: ""},
+	{src: require("@/assets/significant-certificates/всероссийский.png"), title: ""},
+	{src: require("@/assets/significant-certificates/москва.png"), title: ""},
+	{src: require("@/assets/significant-certificates/окружной.png"), title: ""},
+	{src: require("@/assets/significant-certificates/пфо-цп.png"), title: ""},
+	{src: require("@/assets/significant-certificates/Сертификат-Минина.png"), title: ""},
+	{src: require("@/assets/significant-certificates/хабаровск.png"), title: ""},
+	{src: require("@/assets/significant-certificates/цп-омск.png"), title: ""},
+	//////
+	{src: require("@/assets/certificates/Comparison-ResumeVacancy.png"), title: ""},
+	{src: require("@/assets/certificates/HR-T1.png"), title: ""},
+	{src: require("@/assets/certificates/ProjectSystemINNOHack.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-devops.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-python.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-графический-дизайн.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-кибербезопасность.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-мобильная-разработка.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-нейросетевое-искусство.png"), title: ""},
+	{src: require("@/assets/certificates/траектория-будущего-финансовая-грамотность.png"), title: ""},
+	{src: require("@/assets/certificates/цифровизация-во-благо.png"), title: ""},
+])
+
+const showLightBox = ref(false);
+const currentIndex = ref(0);
+
+const openLightBox = (index) => {
+    currentIndex.value = index;
+    showLightBox.value = true;
+};
+
+const closeLightBox = () => {
+    showLightBox.value = false;
+};
+
 </script>
 
 <template>
@@ -104,6 +164,37 @@ const { t, locale } = useI18n();
 				<Ngrok/>
 			</vue-marquee-slider>
 		</div>
+
+		<div class="awards-container">
+			<div class="containers-title">
+				<p v-html="t('about.awards.title')"></p>
+			</div>
+
+			<Carousel v-bind="config">
+				<Slide v-for="award in awardsList">
+					<Image class="image" :src="award.src" :alt="award.title" preview />
+				</Slide>
+
+				<template #addons>
+					<Pagination />
+				</template>
+			</Carousel>
+		</div>
+
+		<div class="certificates-container">
+			<div class="containers-title">
+				<p v-html="t('about.certificates.title')"></p>
+			</div>
+			<Carousel v-bind="config">
+				<Slide v-for="certificate in certificatesList">
+					<Image class="image" :src="certificate.src" :alt="certificate.title" preview />
+				</Slide>
+
+				<template #addons>
+					<Pagination />
+				</template>
+			</Carousel>
+		</div>
 	</div>
 </template>
 
@@ -117,7 +208,7 @@ const { t, locale } = useI18n();
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	gap: 100px;
-	padding: 100px 20%;
+	padding: 100px 20% 50px 20%;
 	box-sizing: border-box;
 	overflow: scroll;
 }
@@ -196,7 +287,7 @@ const { t, locale } = useI18n();
 	.stats {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 		gap: 30px;
 
 		.stat {
@@ -230,5 +321,44 @@ const { t, locale } = useI18n();
 	position: relative;
 	padding: 50px 20px 20px 20px;
 	gap: 30px;
+}
+
+.awards-container {
+	width: 100%;
+	max-width: 1050px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--sbg1-color);
+	border-radius: 15px;
+	position: relative;
+	padding: 50px 20px 20px 20px;
+
+	.image {
+		max-height: 370px !important;
+		height: auto !important;
+		border-radius: 15px;
+		object-fit: cover !important;
+	}
+}
+
+.certificates-container {
+	width: 100%;
+	max-width: 1050px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--sbg1-color);
+	border-radius: 15px;
+	position: relative;
+	padding: 50px 20px 20px 20px;
+	gap: 30px;
+
+	.image {
+		max-height: 370px;
+		height: auto;
+		border-radius: 15px;
+		object-fit: cover;
+	}
 }
 </style>

@@ -23,6 +23,11 @@
 	--sapphire-color: #7dc4e4;
 	--blue-color: #8aadf4;
 	--lavender-color: #b7bdf8;
+
+  	--vc-pgn-active-color: #8aadf4 !important;
+	--vc-pgn-width: 12px !important;
+	--vc-pgn-height: 12px !important;
+	--vc-pgn-border-radius: 6px !important;
 }
 
 .dark-theme {
@@ -74,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'PressStart2P', sans-serif;
 }
 
-span {
+.text span {
 	display: inline-flex;
 	border-radius: 10px;
 	align-items: center;
@@ -97,4 +102,26 @@ span {
 			var(--lavender-color)
 	);
 	color: var(--button-color)
+}
+
+.p-image {
+	height: auto !important;
+	max-height: 370px !important;
+	border-radius: 15px !important;
+}
+
+.image img {
+	height: auto !important;
+	max-height: 370px !important;
+	border-radius: 15px !important;
+}
+
+.p-image-preview {
+	height: auto !important;
+	max-height: 370px !important;
+	border-radius: 15px !important;
+}
+
+.p-image-preview-mask {
+	border-radius: 15px !important;
 }

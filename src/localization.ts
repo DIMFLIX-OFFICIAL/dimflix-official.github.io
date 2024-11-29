@@ -37,6 +37,12 @@ export const messages = {
         },
         techStack: {
           title: "My Tech Stack"
+        },
+        awards: {
+          title: "Awards"
+        },
+        certificates: {
+          title: "Certificates"
         }
       }
     },
@@ -78,6 +84,12 @@ export const messages = {
         },
         techStack: {
           title: "Мой тех. стек"
+        },
+        awards: {
+          title: "Награды"
+        },
+        certificates: {
+          title: "Сертификаты"
         }
       }
     }
