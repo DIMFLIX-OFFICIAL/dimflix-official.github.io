@@ -25,9 +25,9 @@
 	--lavender-color: #b7bdf8;
 
   	--vc-pgn-active-color: #8aadf4 !important;
-	--vc-pgn-width: 12px !important;
-	--vc-pgn-height: 12px !important;
-	--vc-pgn-border-radius: 6px !important;
+	--vc-pgn-width: .7vw !important;
+	--vc-pgn-height: .7vw !important;
+	--vc-pgn-border-radius: 50% !important;
 }
 
 .dark-theme {

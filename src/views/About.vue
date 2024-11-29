@@ -1,7 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import DiamondLine from "@/components/DiamondLine.vue";
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 import { VueMarqueeSlider } from 'vue3-marquee-slider';
 import Image from 'primevue/image';
@@ -35,16 +35,16 @@ import Selenium from '@/components/icons/tech-stack/Selenium.vue';
 import Aiohttp from '@/components/icons/tech-stack/Aiohttp.vue';
 import Ngrok from '@/components/icons/tech-stack/Ngrok.vue';
 import Flask from '@/components/icons/tech-stack/Flask.vue';
-import { ImageCompareClasses } from 'primevue';
 
-const isLightboxOpen = ref(true);
 const { t, locale } = useI18n();
-const config = {
+const screenSize = ref(0);
+
+const config = ref({
   itemsToShow: 3.95,
   wrapAround: true,
   transition: 500,
   gap: 100,
-};
+});
 
 const awardsList = ref([
 	{src: require("@/assets/awards/it-planet-ai-спорттех-финал.png"), alt: ""},
@@ -80,28 +80,50 @@ const certificatesList = ref([
 	{src: require("@/assets/certificates/цифровизация-во-благо.png"), title: ""},
 ])
 
-const showLightBox = ref(false);
-const currentIndex = ref(0);
-
-const openLightBox = (index) => {
-    currentIndex.value = index;
-    showLightBox.value = true;
+const vwToPx = (vw) => {
+    const viewportWidth = window.innerWidth; // Получаем ширину окна
+    return (vw / 100) * viewportWidth; // Рассчитываем значение в пикселях
 };
 
-const closeLightBox = () => {
-    showLightBox.value = false;
+const calculatePx = (vwValue) => {
+	let result = vwToPx(vwValue).toFixed(2)
+	console.log(result)
+    return result;
 };
 
+const updateScreenSize = () => {
+	screenSize.value = window.innerWidth
+
+	if (screenSize.value <= 600) {
+		config.value.itemsToShow = 1;
+		config.value.gap = 30;
+	} else if (screenSize.value <= 900) {
+		config.value.itemsToShow = 2;
+		config.value.gap = 30;
+	} else if (screenSize.value <= 1100) {
+		config.value.itemsToShow = 3;
+        config.value.gap = 50;
+	} else {
+		config.value.itemsToShow = 4;
+		config.value.gap = 100;
+	}
+};
+
+onMounted(() => {
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateScreenSize);
+});
 </script>
 
 <template>
 	<div class="page">
-		<div class="aboutme-container">
-			<div class="containers-title">
-				<p v-html="t('about.aboutme.title')"></p>
-			</div>
-
-			<div class="img-and-text bm20">
+		<div class="box">
+			<div class="box-title"><p v-html="t('about.aboutme.title')"></p></div>
+			<div class="img-and-text">
 				<img class="photo" src="@/assets/my-photo.jpg">
 				<div class="text">
 					<h4 v-html="t('about.aboutme.hello')"></h4>
@@ -109,9 +131,7 @@ const closeLightBox = () => {
 					<p v-html="t('about.aboutme.description')"></p>
 				</div>
 			</div>
-
 			<DiamondLine />
-
 			<div class="stats">
 				<div class="stat">
 					<p class="count">03</p>
@@ -127,12 +147,9 @@ const closeLightBox = () => {
 				</div>
 			</div>
 		</div>
-		<div class="techstack-container">
-			<div class="containers-title">
-				<p v-html="t('about.techStack.title')"></p>
-			</div>
-      
-			<vue-marquee-slider id="carousel1" :speed="15000" :width="80" :space="30">
+		<div class="box">
+			<div class="box-title"><p v-html="t('about.techStack.title')"></p></div>
+			<vue-marquee-slider id="carousel1" :speed="15000" :space="80">
 				<Python/>
 				<Java/>
 				<Rust/>
@@ -146,10 +163,8 @@ const closeLightBox = () => {
 				<Tauri/>
 				<Aiogram/>
 				<Pyrogram/>
-
 			</vue-marquee-slider>
-
-			<vue-marquee-slider id="carousel2" :speed="15000" :width="80" :space="30" reverse>
+			<vue-marquee-slider id="carousel2" :speed="15000":space="80" reverse>
 				<FastAPI/>
 				<Django/>
 				<Flask/>
@@ -164,25 +179,19 @@ const closeLightBox = () => {
 				<Ngrok/>
 			</vue-marquee-slider>
 		</div>
-
-		<div class="awards-container">
-			<div class="containers-title">
-				<p v-html="t('about.awards.title')"></p>
-			</div>
-
+		<div class="box box-imgs">
+			<div class="box-title"><p v-html="t('about.awards.title')"></p></div>
 			<Carousel v-bind="config">
 				<Slide v-for="award in awardsList">
 					<Image class="image" :src="award.src" :alt="award.title" preview />
 				</Slide>
-
 				<template #addons>
 					<Pagination />
 				</template>
 			</Carousel>
 		</div>
-
-		<div class="certificates-container">
-			<div class="containers-title">
+		<div class="box box-imgs">
+			<div class="box-title">
 				<p v-html="t('about.certificates.title')"></p>
 			</div>
 			<Carousel v-bind="config">
@@ -205,45 +214,16 @@ const closeLightBox = () => {
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	gap: 100px;
-	padding: 100px 20% 50px 20%;
+	padding: 100px 5vw 50px 5vw;
 	box-sizing: border-box;
 	overflow: scroll;
 }
 
-.containers-title {
-	position: absolute;
-	top: -35px;
-	left: 35px;
-	text-align: center;
-	padding: 10px 30px;
-	border-radius: 15px;
-	background-color: var(--sbg2-color);
-	height: 50px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	p {
-		font-family: "Rubik Doodle Shadow", sans-serif;
-		font-size: 2em;
-		margin: 0;
-		padding: 0;
-		color: var(--text-color);
-	}
-}
-
-.bm20 {
-	margin-bottom: 20px;
-}
-
-.bm30 {
-	margin-bottom: 30px;
-}
-
-.aboutme-container {
+.box {
 	width: 100%;
 	max-width: 1050px;
 	box-sizing: border-box;
@@ -252,113 +232,89 @@ const closeLightBox = () => {
 	background-color: var(--sbg1-color);
 	border-radius: 15px;
 	position: relative;
-	padding: 30px 20px 20px 20px;
+	padding: 40px 20px 20px 20px;
+	gap: 30px;
 
-	.img-and-text {
-		max-width: 100%;
-		max-height: 100%;
+	.box-title {
+		position: absolute;
+		top: -1.5vw;
+		left: 2vw;
+		text-align: center;
+		padding: 1vw 1vw;
+		border-radius: .6vw;
+		background-color: var(--sbg2-color);
+		height: 3vw;
 		display: flex;
-		gap: 30px;
-		box-sizing: border-box;
 		align-items: center;
+		justify-content: center;
 
-		.photo {
-			max-height: 500px;
-			height: auto;
-			border-radius: 15px;
-			object-fit: cover;
-		}
-
-		h4 {
-			margin-bottom: 0;
-		}
-
-		h2 {
-			margin-top: 15px;
-		}
-
-		.text {
+		p {
+			font-family: "Rubik Doodle Shadow", sans-serif;
+			font-size: 1.4vw;
+			margin: 0;
+			padding: 0;
 			color: var(--text-color);
-			font-family: 'Aldrich', sans-serif;
-			font-size: 20px;
-		}
-	}
-
-	.stats {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		gap: 30px;
-
-		.stat {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-
-			.count {
-				font-family: "Rubik Doodle Shadow", sans-serif;
-				font-size: 90px;
-				margin: 0;
-			}
-
-			.label {
-				font-family: 'Aldrich', sans-serif;
-				font-size: 18px;
-				margin: 0;
-			}
 		}
 	}
 }
 
-.techstack-container {
-	width: 100%;
-	max-width: 1050px;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--sbg1-color);
-	border-radius: 15px;
-	position: relative;
-	padding: 50px 20px 20px 20px;
-	gap: 30px;
+.box-imgs {
+	gap: 3vw !important;
 }
 
-.awards-container {
-	width: 100%;
-	max-width: 1050px;
-	box-sizing: border-box;
+.img-and-text {
+	max-width: 100%;
+	max-height: 100%;
 	display: flex;
-	flex-direction: column;
-	background-color: var(--sbg1-color);
-	border-radius: 15px;
-	position: relative;
-	padding: 50px 20px 20px 20px;
-
-	.image {
-		max-height: 370px !important;
-		height: auto !important;
-		border-radius: 15px;
-		object-fit: cover !important;
-	}
-}
-
-.certificates-container {
-	width: 100%;
-	max-width: 1050px;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--sbg1-color);
-	border-radius: 15px;
-	position: relative;
-	padding: 50px 20px 20px 20px;
 	gap: 30px;
+	box-sizing: border-box;
+	align-items: center;
 
-	.image {
-		max-height: 370px;
+	.photo {
+		max-height: 30vw;
 		height: auto;
 		border-radius: 15px;
 		object-fit: cover;
+	}
+
+	h4 {
+		margin-bottom: 0;
+	}
+
+	h2 {
+		margin-top: 15px;
+	}
+
+	.text {
+		color: var(--text-color);
+		font-family: 'Aldrich', sans-serif;
+		font-size: 1.1vw;
+	}
+}
+
+.stats {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	box-sizing: border-box;
+	gap: .3vw;
+
+	.stat {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		.count {
+			font-family: "Rubik Doodle Shadow", sans-serif;
+			font-size: 5.3vw;
+			margin: 0;
+		}
+
+		.label {
+			font-family: 'Aldrich', sans-serif;
+			font-size: 1vw;
+			margin: 0;
+		}
 	}
 }
 </style>
