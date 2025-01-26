@@ -9,6 +9,9 @@ import { messages } from './localization'
 
 import { createI18n } from 'vue-i18n'
 
+import { Buffer } from 'buffer';
+(window as any).Buffer = Buffer; // Для браузеров, где Buffer не определён:cite[3]
+
 const i18n = createI18n({
   locale: 'en',
   messages: messages

@@ -70,6 +70,11 @@ export const messages = {
           title: "PyTypingCourse",
           description: "A course for an in-depth study of typing in the Python programming language"
         }
+      },
+      articles: {
+        title: "Latest Articles",
+        back: "Back to Articles",
+        readMore: "Read more"
       }
     },
     ru: {
@@ -143,6 +148,11 @@ export const messages = {
           title: "PyTypingCourse",
           description: "Курс для глубокого изучения типизации в языке программирования Python"
         }
+      },
+      articles: {
+        title: "Последние статьи",
+        back: "Назад ко всем статьям",
+        readMore: "Подробнее"
       }
     }
   }
