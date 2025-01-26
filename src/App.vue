@@ -81,12 +81,13 @@ body {
 	max-height: 40px;
 	background-color: var(--sbg1-color);
 	border-radius: 0 0 10px 10px;
-	margin-left: 40px;
+	margin-left: 20px;
 	overflow: hidden;
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
+	z-index: 999;
 	
 	&.open-settings-menu {
 		min-height: none;

@@ -44,6 +44,32 @@ export const messages = {
         certificates: {
           title: "Certificates"
         }
+      },
+      portfolio: {
+        spectrumSecurity: {
+          title: "Spectrum Security",
+          description: "Spectrum Security is a small project written entirely in Python. To check a PC for viruses, it uses specially trained machine learning, which recognizes malicious code in Windows executable files with up to 90% accuracy."
+        },
+        meowrch: {
+          title: "Meowrch",
+          description: "Meowrch is an Arch-based build sharpened to maximize performance, ergonomics, and beauty."
+        },
+        pixelGan: {
+          title: "PixelGAN",
+          description: "A tool designed to improve the quality of photos and videos. It uses a generative-adversarial network algorithm."
+        },
+        terraWing: {
+          title: "TerraWing",
+          description: "TerraWing is a service for recognizing obstacles in the path of UAVs and classifying them. Our solution is designed for use in the agro-industrial complex."
+        },
+        defectSenseAI: {
+          title: "DefectSenseAI",
+          description: "DefectSenseAI is a service for detecting and classifying production defects and various defects in photographs."
+        },
+        pyTypingCourse: {
+          title: "PyTypingCourse",
+          description: "A course for an in-depth study of typing in the Python programming language"
+        }
       }
     },
     ru: {
@@ -90,6 +116,32 @@ export const messages = {
         },
         certificates: {
           title: "Сертификаты"
+        }
+      },
+      portfolio: {
+        spectrumSecurity: {
+          title: "Spectrum Security",
+          description: "Spectrum Security - это небольшой проект, полностью написанный на Python. Для проверки компьютера на наличие вирусов он использует специальный ML алгоритм, которое распознает вредоносный код в исполняемых файлах Windows с точностью до 90 %."
+        },
+        meowrch: {
+          title: "Meowrch",
+          description: "Meowrch - сборка, основанная на Arch, заточенная под максимальную производительность, эргономичность и красоту. "
+        },
+        pixelGan: {
+          title: "PixelGAN",
+          description: "Инструмент разработанный для улучшения качества фото и видео. В нем используется алгоритм генеративно-состязательной сети."
+        },
+        terraWing: {
+          title: "TerraWing",
+          description: "TerraWing - сервис для распознавания препятствий на пути движения БПЛА и их классификации. Наше решение предназначено для использования в агропромышленном комплексе."
+        },
+        defectSenseAI: {
+          title: "DefectSenseAI",
+          description: "DefectSenseAI - сервис для обнаружения и классификации производственных браки и различных дефектов на фотографиях."
+        },
+        pyTypingCourse: {
+          title: "PyTypingCourse",
+          description: "Курс для глубокого изучения типизации в языке программирования Python"
         }
       }
     }
